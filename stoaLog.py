@@ -1,31 +1,9 @@
-'''
-Objective: Create a user-friendly application for maintaining a personal journal. The journal should allow users to log daily reflections, view past entries, and search through them easily. It should focus on simplicity, privacy, and flexibility.
-
-Key Features
-	1.	Add Entries:
-	    automatically apply date and time for new entry, user types in title and entry and exxit using EOFError
-
-	    automatically sort entries based upon date and time
-
-	2.	Delete Entries:
-	    Delete Entries: Remove unwanted entries.
-
-	3.  View Entries:
-	    Display all entries in chronological order, formatted for readability.
-
-	4.	Search Functionality:
-	    Search by keywords or specific dates.
-
-	5.	Data Persistence:
-	    Save journal entries in a structured file format (e.g., JSON or SQLite).
-'''
-
 import json
 import sys
 from datetime import datetime
 
 journal = {}
-# journal = {"date-time": {"title": "entry"}}
+# journal = {"title": {"entry": "date-time"}}
 
 def main():
     first_run = True
@@ -65,13 +43,28 @@ def add_entry():
     time = datetime.now().strftime("%H:%M")
     date_time = f"{date}, {time}"
     title = input("\nEntry title: ").strip().title()
-    entry = input("Entry: ")
+    entry = input("Entry: ").strip()
 
-    journal[date_time] = {"title": title, "entry": entry}
+    journal[title] = {"entry": entry, "date and time": date_time}
     print(f"\n{title} has been added to journal")
 
 def delete_entry():
-    pass
+    if journal:
+        print("\nJournal entries:")
+        for i, title in enumerate(journal, 1):
+            print(f"{i}. {title}")
+
+        while True:
+            user_choice = input("\nWhich entry would you like to delete? ").strip().title()
+            if user_choice in journal:
+                del journal[user_choice]
+                save_journal()
+                print(f"{user_choice} has been deleted from the journal and changes have been saved.")
+                break
+            else:
+                print("\nInvalid choice. Please try again.")
+    else:
+        print("\nNo entries to delete") 
 
 def view_entry():
     pass

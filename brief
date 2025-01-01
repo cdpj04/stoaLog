@@ -1,0 +1,19 @@
+Objective: Create a user-friendly application for maintaining a personal journal. The journal should allow users to log daily reflections, view past entries, and search through them easily. It should focus on simplicity, privacy, and flexibility.
+
+Key Features
+	1.	Add Entries:
+	    automatically apply date and time for new entry, user types in title and entry and exit using EOFError - complete
+
+	    automatically sort entries based upon date and time
+
+	2.	Delete Entries:
+	    Remove unwanted entries. - complete
+
+	3.  View Entries:
+	    Display all entries in chronological order, formatted for readability.
+
+	4.	Search Functionality:
+	    Search by keywords or specific dates.
+
+	5.	Data Persistence:
+	    Save journal entries in a structured file format (e.g., JSON or SQLite).
